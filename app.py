@@ -49,17 +49,19 @@ def transcribe(audio_file):
 
     with st.spinner("请耐心等待 ..."):
 
-        audio = whisper.load_audio(audio_file)
-        audio = whisper.pad_or_trim(audio)
+        return audio_file
 
-        mel = whisper.log_mel_spectrogram(audio).to(model.device)
+        # audio = whisper.load_audio(audio_file)
+        # audio = whisper.pad_or_trim(audio)
 
-        _, probs = model.detect_language(mel)
+        # mel = whisper.log_mel_spectrogram(audio).to(model.device)
 
-        options = whisper.DecodingOptions(fp16 = False)
-        result = whisper.decode(model, mel, options)
+        # _, probs = model.detect_language(mel)
 
-        return result
+        # options = whisper.DecodingOptions(fp16 = False)
+        # result = whisper.decode(model, mel, options)
+
+        # return result
     
 
 if audio_file is not None:
