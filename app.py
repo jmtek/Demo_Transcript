@@ -8,7 +8,7 @@ import whisper
 import yaml
 
 def init_logger():
-    with open(os.path.join(os.path.dirname(__file__), "src/logging_config.yml"), "r") as logging_config_file:
+    with open(os.path.join(os.path.dirname(__file__), "cfg/logging_config.yml"), "r") as logging_config_file:
         logging_config = yaml.safe_load(logging_config_file.read())
         logging.config.dictConfig(logging_config)
         return logging.getLogger(__name__)
