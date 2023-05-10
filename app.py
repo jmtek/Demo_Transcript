@@ -50,7 +50,7 @@ def transcribe(audio_file):
     #     return result
 
 
-    audio = whisper.load_audio(audio_file.name)
+    audio = whisper.load_audio(audio_file.filename)
     audio = whisper.pad_or_trim(audio)
 
     mel = whisper.log_mel_spectrogram(audio).to(model.device)
