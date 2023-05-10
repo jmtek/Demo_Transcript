@@ -72,5 +72,5 @@ if audio_file is not None:
         output = "Speech was not detected"
     else:
         output = result["text"]
-    logger.debug("transcript is: " + output)
+    # logger.debug("transcript is: " + output)
     st.write(output)
