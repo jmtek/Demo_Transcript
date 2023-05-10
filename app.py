@@ -49,7 +49,7 @@ def transcribe(audio_file):
 
     with st.spinner("请耐心等待 ..."):
 
-        return audio_file
+        return {"text":audio_file}
 
         # audio = whisper.load_audio(audio_file)
         # audio = whisper.pad_or_trim(audio)
