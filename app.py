@@ -36,15 +36,29 @@ def load_model():
 
 
 def transcribe(audio_file):
-    with NamedTemporaryFile() as temp:
-        with st.spinner("请耐心等待 ..."):
+    # with NamedTemporaryFile() as temp:
+    #     with st.spinner("请耐心等待 ..."):
 
-            temp.write(audio_file.getvalue())
-            temp.seek(0)
-            try:
-                result = load_model().transcribe(temp.name, temperature=0)
-            except Exception:
-                logger.error("The file could not be transcribed, file: " + temp.name)
+    #         temp.write(audio_file.getvalue())
+    #         temp.seek(0)
+    #         try:
+    #             result = load_model().transcribe(temp.name, temperature=0)
+    #         except Exception:
+    #             logger.error("The file could not be transcribed, file: " + temp.name)
+    #     return result
+
+    with st.spinner("请耐心等待 ..."):
+
+        audio = whisper.load_audio(audio_file)
+        audio = whisper.pad_or_trim(audio)
+
+        mel = whisper.log_mel_spectrogram(audio).to(model.device)
+
+        _, probs = model.detect_language(mel)
+
+        options = whisper.DecodingOptions(fp16 = False)
+        result = whisper.decode(model, mel, options)
+
         return result
     
 
