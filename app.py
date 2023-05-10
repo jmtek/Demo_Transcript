@@ -65,7 +65,7 @@ def transcribe(audio_file):
 
 if audio_file is not None:
     logger.debug("transcript started...")
-    logger.debug(str(audio_file))
+    st.write(str(audio_file))
     result = transcribe(audio_file)
 
     if result["text"] == "":
